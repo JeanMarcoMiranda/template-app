@@ -1,8 +1,10 @@
+// UserCookiesContext.tsx
 import React, { createContext, useContext } from 'react';
 import { useCookies } from 'react-cookie';
 import { User, UserCookiesContextType } from '@/types';
+import { api } from '@/api/axiosConfig';
 
-const userApp = 'user';
+export const userApp = 'user';
 const authTokenApp = 'authToken';
 const refreshTokenApp = 'refreshToken';
 
@@ -21,15 +23,17 @@ export const UserCookiesProvider = ({ children }: { children: React.ReactNode })
 
   const getUser = (): User | null => {
     const user = cookies[userApp];
-    return user ? JSON.parse(user) : null;
+    return user ? user : null;
   };
 
   const saveAccessToken = (token: string) => {
     setCookie(authTokenApp, token, { path: '/', expires: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000) });
+    api.defaults.headers.Authorization = `Bearer ${token}`;
   };
 
   const removeAccessToken = () => {
     removeCookie(authTokenApp, { path: '/' });
+    delete api.defaults.headers.Authorization;
   };
 
   const getAccessToken = (): string | undefined => {

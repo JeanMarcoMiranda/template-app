@@ -6,43 +6,47 @@ import Header from "../components/Header";
 import Footer from "../components/Footer";
 import Sidebar from "../components/Sidebar";
 import { Box, Container, CssBaseline } from "@mui/material";
+import { useUserCookies } from "@/context/UserCookiesContext";
 
 interface MainLayoutProps {
-    children: ReactNode;
+  children: ReactNode;
 }
-
 
 const MainLayout: FC<MainLayoutProps> = ({ children }) => {
-    const [isSidebarOpen, setIsSidebarOpen] = useState(false)
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const { removeSession } = useUserCookies();
 
-    const dispatch = useDispatch()
-    const navigate = useNavigate()
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
-    const handleLogout = () => {
-        dispatch(logout())
-        navigate('/login')
-    }
+  const handleLogout = () => {
+    dispatch(logout());
+    removeSession();
+    navigate("/login");
+  };
 
-    return (
-        <div className="flex h-screen">
-            <CssBaseline />
+  return (
+    <div className="flex h-screen">
+      <CssBaseline />
 
-            <Sidebar isOpen={isSidebarOpen} onClose={() => setIsSidebarOpen(false)} />
+      <Sidebar isOpen={isSidebarOpen} onClose={() => setIsSidebarOpen(false)} />
 
-            <Box component="main" className="flex-grow bg-gray-100 h-screen overflow-auto">
-                <Header
-                    onLogout={handleLogout}
-                    onSidebarOpen={() => setIsSidebarOpen(true)}
-                    isSidebarOpen={isSidebarOpen}
-                />
-                <Container maxWidth="lg" className="mt-4 mb-4">
-                    <Outlet />
-                </Container>
-                <Footer />
-            </Box>
-
-        </div>
-    )
-}
+      <Box
+        component="main"
+        className="flex-grow bg-gray-100 h-screen overflow-auto"
+      >
+        <Header
+          onLogout={handleLogout}
+          onSidebarOpen={() => setIsSidebarOpen(true)}
+          isSidebarOpen={isSidebarOpen}
+        />
+        <Container maxWidth="lg" className="mt-4 mb-4">
+          <Outlet />
+        </Container>
+        <Footer />
+      </Box>
+    </div>
+  );
+};
 
 export default MainLayout;
