@@ -1,8 +1,9 @@
 import Root from "./root";
 import Register from "@/pages/Register";
-import { Home, Login } from "@mui/icons-material";
 import PrivateRoute from "@/components/PrivateRoute";
 import { createBrowserRouter, Navigate } from "react-router-dom";
+import Home from "@/pages/Home";
+import Login from "@/pages/Login";
 
 const router = createBrowserRouter([
   {
