@@ -1,56 +1,35 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import "./main.css";
-import '@fontsource/roboto/300.css';
-import '@fontsource/roboto/400.css';
-import '@fontsource/roboto/500.css';
-import '@fontsource/roboto/700.css';
-import {
-  createBrowserRouter,
-  Navigate,
-  RouterProvider,
-} from "react-router-dom";
-import Root from "./router/root.tsx";
-import Home from "./pages/Home.tsx";
 import { Provider } from "react-redux";
+import { RouterProvider } from "react-router-dom";
+
+import "./main.css";
+import "@fontsource/roboto/300.css";
+import "@fontsource/roboto/400.css";
+import "@fontsource/roboto/500.css";
+import "@fontsource/roboto/700.css";
+
+import router from "./router/router.tsx";
+
 import store from "./store/index.ts";
-import PrivateRoute from "./components/PrivateRoute.tsx";
-import Login from "./pages/Login.tsx";
-import Register from "./pages/Register.tsx";
+import { UserCookiesProvider } from "./context/UserCookiesContext.tsx";
+import { useAxiosConfig } from "./api/axiosConfig.ts";
 
-const router = createBrowserRouter([
-  {
-    path: "/",
-    element: (
-      <PrivateRoute>
-        <Root />
-      </PrivateRoute>
-    ),
-    children: [
-      {
-        path: "",
-        element: <Home />,
-      },
-    ],
-  },
-  {
-    path: "login",
-    element: <Login />,
-  },
-  {
-    path: "register",
-    element: <Register />,
-  },
-  {
-    path: "*",
-    element: <Navigate to="/" />,
-  },
-]);
 
-ReactDOM.createRoot(document.getElementById("root")!).render(
-  <React.StrictMode>
+export const Main = () => {
+  useAxiosConfig();
+
+  return (
     <Provider store={store}>
       <RouterProvider router={router} />
     </Provider>
+  );
+};
+
+ReactDOM.createRoot(document.getElementById("root")!).render(
+  <React.StrictMode>
+    <UserCookiesProvider>
+      <Main />
+    </UserCookiesProvider>
   </React.StrictMode>
 );
