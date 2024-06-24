@@ -23,10 +23,10 @@ import {
 } from '@mui/material';
 import { Search, Edit, Delete, Add, Close } from '@mui/icons-material';
 import usePagination from '@/hooks/usePagination';
-import CompanyForm from './CompanyForm';
+import { CompanyForm } from './CompanyForm';
 import { fetchCompanies } from '@/services/company';
 
-const CompanyList: React.FC = () => {
+export const CompanyList: React.FC = () => {
   const [companies, setCompanies] = useState<Company[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
@@ -204,5 +204,3 @@ const CompanyList: React.FC = () => {
     </>
   );
 };
-
-export default CompanyList;

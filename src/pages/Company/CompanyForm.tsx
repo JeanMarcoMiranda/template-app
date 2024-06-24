@@ -23,7 +23,7 @@ interface CompanyFormProps {
   onSubmitSuccess: () => void;
 }
 
-const CompanyForm: React.FC<CompanyFormProps> = ({
+export const CompanyForm: React.FC<CompanyFormProps> = ({
   company,
   onSubmitSuccess,
 }) => {
@@ -290,5 +290,3 @@ const CompanyForm: React.FC<CompanyFormProps> = ({
     </Container>
   );
 };
-
-export default CompanyForm;

@@ -1,8 +1,8 @@
 import React from 'react';
 import { Typography } from '@mui/material';
-import CompanyList from './CompanyList';
+import { CompanyList } from './CompanyList';
 
-const CompanyScreen: React.FC = () => {
+export const CompanyScreen: React.FC = () => {
   return (
     <div className='flex flex-col gap-4'>
       <Typography variant="h6" gutterBottom className='pt-4'>
@@ -12,5 +12,3 @@ const CompanyScreen: React.FC = () => {
     </div>
   );
 };
-
-export default CompanyScreen;

@@ -67,6 +67,25 @@ export interface Company {
   color?: string;
 }
 
+//menu
+export interface Item {
+  id: number;
+  name: string;
+  description?: string;
+  company: number[];
+  price: string;
+  discount_price?: string;
+  category: number;
+  product?: 'DIETA' | 'VEGET' | 'CONVE';
+  product_type?: 'DESAY' | 'ALMUE' | 'CENAC';
+  image?: string;
+  stock: number;
+  status: boolean;
+  deliverable: boolean;
+  order?: number;
+}
+
+
 // department
 export interface Department {
   id: number;
@@ -108,4 +127,11 @@ export interface AxiosErrorResponse {
       [key: string]: string[];
     };
   };
+}
+
+export interface Category {
+  id: number;
+  week_day?: 'LU' | 'MA' | 'MI' | 'JU' | 'VI' | 'SA' | 'DO';
+  the_cart?: number | null;
+  items: Item[];
 }

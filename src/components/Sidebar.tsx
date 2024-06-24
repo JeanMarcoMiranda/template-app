@@ -18,14 +18,12 @@ interface SidebarProps {
 const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose }) => {
   return (
     <aside
-      className={`relative bg-gray-800 text-white ${
-        isOpen ? "w-60" : "w-0"
-      } transition-all duration-200 ease-in-out`}
+      className={`relative bg-gray-800 text-white ${isOpen ? "w-60" : "w-0"
+        } transition-all duration-200 ease-in-out`}
     >
       <div
-        className={`transition-all duration-200 ${
-          isOpen ? "opacity-100" : "opacity-0 hidden"
-        }`}
+        className={`transition-all duration-200 ${isOpen ? "opacity-100" : "opacity-0 hidden"
+          }`}
       >
         <SidebarHeader onClose={onClose} />
         <Divider />
@@ -45,6 +43,9 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose }) => {
           <Divider />
           <ListItem button component={Link} to="/companies">
             <ListItemText primary="Clientes" />
+          </ListItem>
+          <ListItem button component={Link} to="/menu">
+            <ListItemText primary="Menus" />
           </ListItem>
         </List>
       </div>
