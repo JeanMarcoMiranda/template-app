@@ -40,7 +40,7 @@ const MainLayout: FC<MainLayoutProps> = ({ children }) => {
           onSidebarOpen={() => setIsSidebarOpen(true)}
           isSidebarOpen={isSidebarOpen}
         />
-        <Container maxWidth="lg" className="mt-4 mb-4">
+        <Container maxWidth="xl" className="m-4 bg-slate-100 rounded-2xl shadow-md">
           <Outlet />
         </Container>
         <Footer />

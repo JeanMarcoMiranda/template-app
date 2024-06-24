@@ -32,6 +32,61 @@ export interface User {
   country: string | null;
 }
 
+// company
+export interface Company {
+  id?: number;
+  name: string;
+  ruc: string;
+  pay_condition: string;
+  created?: string;
+  deleted?: boolean;
+  slug: string;
+  address: string;
+  district: number;
+  province: number;
+  department: number;
+  country: number;
+  long?: number;
+  lat?: number;
+  portada?: string;
+  logo?: string;
+  logo_alternative?: string;
+  show_logo?: boolean;
+  delivery_aviable?: boolean;
+  phone?: string;
+  mobile?: string;
+  description?: string;
+  information?: string;
+  status?: boolean;
+  category_restaurant?: number[];
+  public_key?: string;
+  private_key?: string;
+  allow_back_home?: boolean;
+  admin_company?: number[];
+  info_payment_method?: string;
+  color?: string;
+}
+
+// department
+export interface Department {
+  id: number;
+  name: string;
+}
+
+// province
+export interface Province {
+  id: number;
+  name: string;
+  department: number;
+}
+
+// district
+export interface District {
+  id: number;
+  name: string;
+  province: number;
+}
+
 //cookies
 export interface UserCookiesContextType {
   saveUser: (user: User) => void;
@@ -44,4 +99,13 @@ export interface UserCookiesContextType {
   removeRefreshToken: () => void;
   getRefreshToken: () => string | undefined;
   removeSession: () => void;
+}
+
+// types.ts
+export interface AxiosErrorResponse {
+  response: {
+    data: {
+      [key: string]: string[];
+    };
+  };
 }
